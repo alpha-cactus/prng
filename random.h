@@ -1,13 +1,23 @@
 #ifndef _RANDOM_H_
 #define _RANDOM_H_
 
-typedef uint32_t u4;
-typedef struct ranctx { u4 a; u4 b; u4 c; u4 d; } ranctx;
+#include "types.h"
 
-#define rot(x,k) (((x)<<(k))|((x)>>(32-(k))))
+//------------------------------
+//----- types
 
-extern u4 ranval( ranctx *x );
+typedef struct {
+	s16 min, max, val;
+	u32 a, c, x;
+} random_state_t;
 
-extern void raninit( ranctx *x, u4 seed );
+//------------------------------
+//----- functions
 
-#endif /* _RANDOM_H_ */
+// initialize random generator
+extern void random_init(random_state_t *r, u32 seed, s16 min, s16 max);
+// (re)seed generator, restarting sequence
+extern void random_seed(random_state_t *r, u32 seed);
+extern s16 random_next(random_state_t *r);
+
+#endif // header guard
