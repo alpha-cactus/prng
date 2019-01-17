@@ -1,7 +1,7 @@
 
 HOMEDIR = .
 
-SRC = ${HOMEDIR}/main.c ${HOMEDIR}/random.c
+SRC = ${HOMEDIR}/main.c ${HOMEDIR}/tele_rand.c
 
 make: ${SRC}
 	gcc ${SRC} -o prng
